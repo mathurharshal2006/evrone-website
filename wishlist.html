@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist — Evrone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{--cream:#F5F0E8;--warm-white:#FAFAF7;--beige:#E8DFD0;--dark:#1A1714;--mid-brown:#6B5E52;--light-brown:#B5A898;--border:#E0D8CC;}
+    body{background:var(--warm-white);color:var(--dark);font-family:'Inter',sans-serif;font-weight:300;}
+    .header{padding:48px 56px;border-bottom:1px solid var(--border);}
+    .back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--light-brown);text-decoration:none;}
+    h1{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;margin-top:16px;}
+    .grid{padding:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;}
+    .card{cursor:pointer;}
+    .card img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--beige);}
+    .card-name{font-family:'Cormorant Garamond',serif;font-size:18px;margin-top:12px;}
+    .card-price{font-size:16px;color:var(--mid-brown);margin-top:4px;}
+    .remove-btn{margin-top:8px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#C41C1C;background:none;border:none;cursor:pointer;}
+    .empty{text-align:center;padding:100px 20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--light-brown);}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="shop.html" class="back">← Back to Shop</a>
+    <h1>Your Wishlist</h1>
+  </div>
+  <div class="grid" id="wishGrid"></div>
+
+  <script>
+    const products = [
+  {
+    id: 1,
+    name: "Silent Wings Shirt ",
+    desc: "100% premium cotton, half sleeves",
+    price: "Upcoming",
+    mrp: "Upcoming",
+    discount: "Upcoming",
+    category: "formal",
+    badge: "Out of Stock",
+    badgeType: "outofstock",
+    outOfStock: true,
+    sizes: ["M","L","XL"],
+    images: ["./silentwings1.jpeg", "./silentwings2.jpeg", "./silentwings1.jpeg"]
+    
+  },
+  {
+    id: 2,
+    name: "Butterfly Reverie Shirt",
+    desc: "A Timeless fusion of classical art and contemporary craftmenship.The butterfly Reverie shirt features a striking digital print of a Greco-Roman inspired sculpture,brought to life with vibrant embroidered butterflies that add texture,depth and a premium handcrafted finish. Crafted from soft,breatheable fabric , this shirt balances artistic expression with everyday comfort . The detailed digiital print ensures crisp visuals,while the raised butterfly embroidery creates a unique 3d effect that stands out from every angle.",
+    price: 1999,
+    mrp: 2499,
+    discount: 20,
+    category: "casual",
+    badge: "Best Seller",
+    badgeType: "",
+    outOfStock: false,
+    sizes: ["M","L","XL"],
+    images: ["./butterfly2.jpeg", "./butterfly1.jpeg"]
+    
+  },
+  {
+    id: 3,
+    name: "Botanical Classic Statue Shirt ",
+    desc: "Premium embroidery detailing, half sleeves",
+    price: 1999,
+    mrp: 2499,
+    discount: 20,
+    category: "casual",
+    badge: "Coming Soon",
+    badgeType: "coming",
+    outOfStock: true,
+    sizes: ["M","L","XL"],
+    images: ["./Botanical1.jpeg", "./Botanical2.jpeg"]
+    
+  },
+  {
+    id: 4,
+    name: "Celestial Graphic Shirt",
+    desc: "Rich brown tone, embroidery detailing, half sleeves",
+    price: 1999,
+    mrp: 2499,
+    discount: 20,
+    category: "casual",
+    badge: "Coming Soon",
+    badgeType: "coming",
+    outOfStock: true,
+    sizes: ["M","L","XL"],
+    images: ["./celestial1.jpeg", "./celestial2.jpeg", "./celestial1.jpeg"]
+    
+  },
+  {
+    id: 5,
+    name: "Shadowflight Pants",
+    desc: "Premium trackpant, comfortable fit",
+    price: 1999,
+    mrp: 2499,
+    discount: 20,
+    category: "bottomwear",
+    badge: "Out of Stock",
+    badgeType: "outofstock",
+    outOfStock: true,
+    sizes: ["M","L","XL"],
+    images: ["./shadowflight1.jpeg", "./shadowflight2.jpeg"]
+    
+  },
+  {
+    id: 6,
+    name: "Dragon Sakura Pants",
+    desc: "Exclusive dragon print, premium Lower",
+    price: "Upcoming",
+    mrp: "Upcoming",
+    discount: "Upcoming",
+    category: "bottomwear",
+    badge: "Coming Soon",
+    badgeType: "coming",
+    outOfStock: true,
+    sizes: ["M","L","XL"],
+    images: ["./dragon1.jpeg", "./dragon2.jpeg"]
+    
+  }
+];
+
+
+    let wishlist = JSON.parse(localStorage.getItem('evroneWishlist') || '[]');
+
+    function render() {
+      const grid = document.getElementById('wishGrid');
+      const items = products.filter(p => wishlist.includes(p.id));
+      if (items.length === 0) {
+        grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">Your wishlist is empty</div>';
+        return;
+      }
+      grid.innerHTML = items.map(p => `
+        <div class="card">
+          <img src="${p.images[0]}" alt="${p.name}" onclick="location.href='shop.html'"/>
+          <div class="card-name">${p.name}</div>
+          <div class="card-price">₹${p.price.toLocaleString('en-IN')}</div>
+          <button class="remove-btn" onclick="removeItem(${p.id})">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function removeItem(pid) {
+      wishlist = wishlist.filter(id => id !== pid);
+      localStorage.setItem('evroneWishlist', JSON.stringify(wishlist));
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>

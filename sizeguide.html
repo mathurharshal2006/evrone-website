@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Size Chart — Evrone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --cream:#F5F0E8;
+      --warm-white:#FAFAF7;
+      --beige:#E8DFD0;
+      --dark:#1A1714;
+      --mid-brown:#6B5E52;
+      --light-brown:#B5A898;
+      --border:#E0D8CC;
+    }
+    body{
+      background:var(--warm-white);color:var(--dark);
+      font-family:'Inter',sans-serif;font-weight:300;
+    }
+
+    .header{
+      padding:48px 56px 32px;
+      border-bottom:1px solid var(--border);
+      background:var(--cream);
+    }
+    .breadcrumb{
+      font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+      color:var(--light-brown);margin-bottom:18px;
+    }
+    .breadcrumb a{color:var(--light-brown);text-decoration:none;transition:color 0.2s;}
+    .breadcrumb a:hover{color:var(--dark);}
+    .header h1{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(36px,5vw,60px);font-weight:300;line-height:1;
+    }
+    .header h1 em{font-style:italic;color:var(--mid-brown);}
+    .header p{
+      margin-top:12px;font-size:13px;color:var(--light-brown);
+      letter-spacing:0.04em;
+    }
+
+    .content{
+      max-width:900px;margin:0 auto;padding:64px 24px 80px;
+    }
+
+    .section-label{
+      font-size:9px;letter-spacing:0.3em;text-transform:uppercase;
+      color:var(--light-brown);margin-bottom:24px;
+      display:flex;align-items:center;gap:14px;
+    }
+    .section-label::after{content:'';height:1px;background:var(--border);flex:1;max-width:60px;}
+
+    .chart-frame{
+      border:1px solid var(--border);
+      background:var(--warm-white);
+      padding:24px;
+      margin-bottom:48px;
+    }
+    .chart-frame img{
+      width:100%;height:auto;display:block;
+    }
+
+    .tips{
+      background:var(--cream);padding:36px 40px;
+    }
+    .tips h2{
+      font-family:'Cormorant Garamond',serif;font-size:24px;
+      font-weight:400;margin-bottom:16px;
+    }
+    .tips p{
+      font-size:13px;line-height:1.9;color:var(--mid-brown);
+      margin-bottom:10px;
+    }
+
+    .help-strip{
+      text-align:center;padding:48px 24px 0;
+    }
+    .help-strip p{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:18px;color:var(--mid-brown);margin-bottom:16px;
+    }
+    .help-link{
+      font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--dark);text-decoration:none;
+      border-bottom:1px solid var(--dark);padding-bottom:3px;
+      transition:opacity 0.2s;
+    }
+    .help-link:hover{opacity:0.6;}
+
+    @media(max-width:600px){
+      .header{padding:32px 20px 24px;}
+      .content{padding:40px 20px 56px;}
+      .tips{padding:28px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="breadcrumb"><a href="shop.html">Shop</a> / Size Chart</div>
+    <h1>Size <em>Chart</em></h1>
+    <p>Find your perfect fit before you order</p>
+  </div>
+
+  <div class="content">
+    <div class="section-label">Measurements</div>
+
+    <div class="chart-frame">
+      <img src="./sizechart.jpg" alt="Evrone Size Chart"/>
+    </div>
+
+    <div class="tips">
+      <h2>How to Measure</h2>
+      <p>Chest — Measure around the fullest part of your chest, keeping the tape horizontal.</p>
+      <p>Length — Measure from the highest point of the shoulder to the desired hem length.</p>
+      <p>Shoulder — Measure from one shoulder seam to the other, across the back.</p>
+    </div>
+  </div>
+
+  <div class="help-strip">
+    <p>Still unsure about your size?</p>
+    <a href="https://wa.me/917014803798" class="help-link">WhatsApp Us →</a>
+  </div>
+
+</body>
+</html>
